@@ -32,7 +32,9 @@ class _HomeState extends State<Home> {
     return Consumer2<Data, Log>(
       builder: (context, consumer, consumer2, child) => Scaffold(
           drawer: Profile(),
-          bottomSheet: BottomBar(theme: _theme,),
+          bottomSheet: BottomBar(
+            theme: _theme,
+          ),
           appBar: PreferredSize(
             preferredSize: Size(double.infinity, 47),
             child: AppBarModel(
@@ -171,7 +173,8 @@ class _HomeState extends State<Home> {
                                 Column(
                                   children: [
                                     Stack(
-                                      overflow: Overflow.visible,
+                                      // overflow: Overflow.visible,
+
                                       children: [
                                         CircleAvatar(
                                           radius: 15,

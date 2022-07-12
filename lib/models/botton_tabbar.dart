@@ -37,7 +37,7 @@ class _BottomBarState extends State<BottomBar> {
             setState(() {});
           },
           items: [
-            tabBarItem(context, 'classes', Icons.class__sharp),
+            tabBarItem(context, 'classes', Icons.class_sharp),
             tabBarItem(context, 'events', Icons.event_sharp),
             FlashyTabBarItem(
                 icon: Icon(Icons.add,
