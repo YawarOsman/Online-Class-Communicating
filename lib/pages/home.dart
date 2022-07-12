@@ -172,36 +172,38 @@ class _HomeState extends State<Home> {
                               children: [
                                 Column(
                                   children: [
-                                    Stack(
-                                      // overflow: Overflow.visible,
-
-                                      children: [
-                                        CircleAvatar(
-                                          radius: 15,
-                                          backgroundImage: AssetImage(
-                                              'assets/images/${consumer.photos[consumer.photos.length - index - 1]}'),
-                                        ),
-                                        Positioned(
-                                          left: 17,
-                                          child: CircleAvatar(
+                                    Container(
+                                      width: 49,
+                                      height: 40,
+                                      child: Stack(
+                                        children: [
+                                          CircleAvatar(
                                             radius: 15,
                                             backgroundImage: AssetImage(
-                                                'assets/images/${consumer.photos[consumer.photos.length - index - 2]}'),
+                                                'assets/images/${consumer.photos[consumer.photos.length - index - 1]}'),
                                           ),
-                                        ),
-                                        Positioned(
-                                          left: 8,
-                                          top: 10,
-                                          child: CircleAvatar(
-                                            radius: 15,
-                                            backgroundImage: AssetImage(
-                                                'assets/images/${consumer.photos[consumer.photos.length - index - 3]}'),
+                                          Positioned(
+                                            left: 17,
+                                            child: CircleAvatar(
+                                              radius: 15,
+                                              backgroundImage: AssetImage(
+                                                  'assets/images/${consumer.photos[consumer.photos.length - index - 2]}'),
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                          Positioned(
+                                            left: 8,
+                                            top: 10,
+                                            child: CircleAvatar(
+                                              radius: 15,
+                                              backgroundImage: AssetImage(
+                                                  'assets/images/${consumer.photos[consumer.photos.length - index - 3]}'),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                     SizedBox(
-                                      height: 23,
+                                      height: 8,
                                     ),
                                     Row(
                                       children: [
@@ -216,7 +218,7 @@ class _HomeState extends State<Home> {
                                   ],
                                 ),
                                 SizedBox(
-                                  width: 30,
+                                  width: 20,
                                 ),
                                 Expanded(
                                   child: Container(
