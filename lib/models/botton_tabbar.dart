@@ -20,34 +20,39 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     provider = Provider.of<Log>(context, listen: false);
-    return Container(
-      color: widget.theme.scaffoldBackgroundColor,
-      padding: EdgeInsets.only(bottom: 20),
-      child: FlashyTabBar(
-          iconSize: 25,
-          backgroundColor: widget.theme.bottomAppBarColor,
-          showElevation: false,
-          selectedIndex: _bottonAppBarSelectedIndex,
-          onItemSelected: (value) {
-            _bottonAppBarSelectedIndex = value;
-            if (value == 2)
-              _roomSize = 20;
-            else
-              _roomSize = 45;
-            setState(() {});
-          },
-          items: [
-            tabBarItem(context, 'classes', Icons.class_sharp),
-            tabBarItem(context, 'events', Icons.event_sharp),
-            FlashyTabBarItem(
-                icon: Icon(Icons.add,
-                    size: _roomSize, color: Colors.green.shade700),
-                title: Text('room'),
-                activeColor: Colors.green.shade700,
-                inactiveColor: Colors.black54),
-            tabBarItem(context, 'alerts', Icons.notification_add),
-            tabBarItem(context, 'home', Icons.home),
-          ]),
+    return Consumer<Log>(
+      builder: (context, consumer, child) => Container(
+        color: widget.theme.scaffoldBackgroundColor,
+        padding: EdgeInsets.only(bottom: 10),
+        child: FlashyTabBar(
+            iconSize: 25,
+            backgroundColor: widget.theme.scaffoldBackgroundColor,
+            showElevation: false,
+            selectedIndex: _bottonAppBarSelectedIndex,
+            onItemSelected: (value) {
+              _bottonAppBarSelectedIndex = value;
+              if (value == 2) {
+                _roomSize = 20;
+              } else {
+                _roomSize = 40;
+              }
+              consumer.setSelectedTab(value);
+
+              setState(() {});
+            },
+            items: [
+              tabBarItem(context, 'classes', Icons.class_sharp),
+              tabBarItem(context, 'events', Icons.event_sharp),
+              FlashyTabBarItem(
+                  icon: Icon(Icons.add,
+                      size: _roomSize, color: Colors.green.shade700),
+                  title: Text('room'),
+                  activeColor: Colors.green.shade700,
+                  inactiveColor: Colors.black54),
+              tabBarItem(context, 'alerts', Icons.notification_add),
+              tabBarItem(context, 'home', Icons.home),
+            ]),
+      ),
     );
   }
 

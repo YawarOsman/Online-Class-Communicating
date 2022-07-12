@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:english_tech/models/botton_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,6 +26,7 @@ class _ProfileState extends State<Profile> {
     swidth = mediaQueryData.size.width;
     sheight = mediaQueryData.size.height;
     _theme = Theme.of(context);
+
     return Consumer2<Data, Log>(
       builder: (context, consumer, consumer2, child) => Scaffold(
           appBar: AppBar(
@@ -35,6 +39,16 @@ class _ProfileState extends State<Profile> {
                     colors: [Colors.green.shade700, Colors.green.shade400]),
               ),
             ),
+            leading: Platform.isIOS
+                ? GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                    ),
+                  )
+                : SizedBox(),
             actions: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 13),
@@ -193,7 +207,10 @@ class _ProfileState extends State<Profile> {
                           ),
                         ),
                         CircleAvatar(
-                          radius: 60,
+                          radius:
+                              mediaQueryData.orientation == Orientation.portrait
+                                  ? swidth / 7.3
+                                  : sheight / 6.5,
                           backgroundImage:
                               AssetImage('assets/images/profile.jpeg'),
                         ),
@@ -272,7 +289,9 @@ class _ProfileState extends State<Profile> {
                                     padding: EdgeInsets.only(top: 10),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
-                                      color: Color.fromARGB(255, 194, 194, 194),
+                                      color: consumer2.isDark
+                                          ? Color.fromARGB(255, 34, 34, 34)
+                                          : Color.fromARGB(255, 244, 244, 244),
                                     ),
                                     child: index > 0
                                         ? Column(
@@ -291,9 +310,18 @@ class _ProfileState extends State<Profile> {
                                                   Text(
                                                     '3 room weekly',
                                                     style: TextStyle(
-                                                        fontSize: 13,
-                                                        color: Color.fromARGB(
-                                                            255, 85, 85, 85)),
+                                                        fontSize: 11,
+                                                        color: consumer2.isDark
+                                                            ? Color.fromARGB(
+                                                                255,
+                                                                105,
+                                                                105,
+                                                                105)
+                                                            : Color.fromARGB(
+                                                                255,
+                                                                66,
+                                                                66,
+                                                                66)),
                                                   ),
                                                 ],
                                               ),
@@ -380,7 +408,9 @@ class _ProfileState extends State<Profile> {
                                     padding: EdgeInsets.only(top: 10),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
-                                      color: Color.fromARGB(255, 194, 194, 194),
+                                      color: consumer2.isDark
+                                          ? Color.fromARGB(255, 34, 34, 34)
+                                          : Color.fromARGB(255, 244, 244, 244),
                                     ),
                                     child: Column(
                                       mainAxisAlignment:
@@ -398,8 +428,11 @@ class _ProfileState extends State<Profile> {
                                               '3 room weekly',
                                               style: TextStyle(
                                                   fontSize: 13,
-                                                  color: Color.fromARGB(
-                                                      255, 85, 85, 85)),
+                                                  color: consumer2.isDark
+                                                      ? Color.fromARGB(
+                                                          255, 105, 105, 105)
+                                                      : Color.fromARGB(
+                                                          255, 66, 66, 66)),
                                             ),
                                           ],
                                         ),
@@ -449,15 +482,17 @@ class _ProfileState extends State<Profile> {
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 13, vertical: 3),
                                       decoration: BoxDecoration(
-                                          color: Color.fromARGB(
-                                              255, 218, 218, 218),
+                                          color: consumer2.isDark
+                                              ? Color.fromARGB(255, 34, 34, 34)
+                                              : Color.fromARGB(
+                                                  255, 244, 244, 244),
                                           borderRadius:
                                               BorderRadius.circular(8)),
                                       child: Text(
                                         consumer.topics[index],
                                         style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600),
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w500),
                                       ),
                                     ))
                               ..add(Row(

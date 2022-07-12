@@ -29,7 +29,6 @@ class MyApp extends StatelessWidget {
         iconTheme: IconThemeData(color: Colors.black),
         textTheme: TextTheme(bodyText1: TextStyle(color: Colors.black)),
         appBarTheme: AppBarTheme(backgroundColor: Colors.white),
-        bottomAppBarColor: Colors.white,
       ),
       darkTheme: ThemeData(
         scaffoldBackgroundColor: Color.fromARGB(255, 24, 24, 24),
@@ -38,7 +37,6 @@ class MyApp extends StatelessWidget {
         textTheme: TextTheme(bodyText1: TextStyle(color: Colors.white)),
         appBarTheme:
             AppBarTheme(backgroundColor: Color.fromARGB(255, 24, 24, 24)),
-        bottomAppBarColor: Colors.grey.shade900,
       ),
       initialRoute: '/',
       routes: {
