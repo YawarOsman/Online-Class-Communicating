@@ -15,7 +15,6 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  late ThemeData _theme;
   late MediaQueryData mediaQueryData;
   late double swidth;
   late double sheight;
@@ -25,10 +24,9 @@ class _ProfileState extends State<Profile> {
     mediaQueryData = MediaQuery.of(context);
     swidth = mediaQueryData.size.width;
     sheight = mediaQueryData.size.height;
-    _theme = Theme.of(context);
 
     return Consumer2<Data, Log>(
-      builder: (context, consumer, consumer2, child) => Scaffold(
+      builder: (context, data, log, child) => Scaffold(
           appBar: AppBar(
             elevation: 0,
             automaticallyImplyLeading: false,
@@ -68,7 +66,7 @@ class _ProfileState extends State<Profile> {
                       GestureDetector(
                         onTap: () {},
                         child: Icon(
-                          consumer2.deviceType == TargetPlatform.iOS
+                          log.deviceType == TargetPlatform.iOS
                               ? Icons.ios_share_outlined
                               : Icons.share_outlined,
                           size: 25,
@@ -78,7 +76,9 @@ class _ProfileState extends State<Profile> {
                         width: 17,
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, '/settings');
+                        },
                         child: Icon(
                           Icons.settings_outlined,
                           size: 25,
@@ -87,8 +87,8 @@ class _ProfileState extends State<Profile> {
                     ]),
               ),
             ],
-            iconTheme: _theme.iconTheme,
-            textTheme: _theme.textTheme,
+            iconTheme: Theme.of(context).iconTheme,
+            textTheme: Theme.of(context).textTheme,
             toolbarHeight: 40,
             titleSpacing: 0,
           ),
@@ -258,7 +258,9 @@ class _ProfileState extends State<Profile> {
                         Text(
                           'Rooms you\'re admin in',
                           style: TextStyle(
-                              fontWeight: FontWeight.w600, fontSize: 15),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
+                              color: Theme.of(context).primaryColor),
                         ),
                         Text(
                           'Show All',
@@ -273,7 +275,7 @@ class _ProfileState extends State<Profile> {
                     padding: EdgeInsets.only(left: 10),
                     child: ListView.builder(
                         shrinkWrap: true,
-                        itemCount: consumer.names.length,
+                        itemCount: data.names.length,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) => GestureDetector(
                               onTap: () {},
@@ -289,7 +291,7 @@ class _ProfileState extends State<Profile> {
                                     padding: EdgeInsets.only(top: 10),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
-                                      color: consumer2.isDark
+                                      color: log.isDark
                                           ? Color.fromARGB(255, 34, 34, 34)
                                           : Color.fromARGB(255, 244, 244, 244),
                                     ),
@@ -301,7 +303,7 @@ class _ProfileState extends State<Profile> {
                                               Column(
                                                 children: [
                                                   Text(
-                                                    consumer.names[index],
+                                                    data.names[index],
                                                     style: TextStyle(
                                                         fontSize: 16,
                                                         fontWeight:
@@ -311,7 +313,7 @@ class _ProfileState extends State<Profile> {
                                                     '3 room weekly',
                                                     style: TextStyle(
                                                         fontSize: 11,
-                                                        color: consumer2.isDark
+                                                        color: log.isDark
                                                             ? Color.fromARGB(
                                                                 255,
                                                                 105,
@@ -333,7 +335,7 @@ class _ProfileState extends State<Profile> {
                                                   image: DecorationImage(
                                                       fit: BoxFit.cover,
                                                       image: AssetImage(
-                                                          'assets/images/${consumer.photos[index]}')),
+                                                          'assets/images/${data.photos[index]}')),
                                                   borderRadius:
                                                       BorderRadius.circular(10),
                                                 ),
@@ -377,7 +379,9 @@ class _ProfileState extends State<Profile> {
                         Text(
                           'Rooms you\'re in',
                           style: TextStyle(
-                              fontWeight: FontWeight.w600, fontSize: 15),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
+                              color: Theme.of(context).primaryColor),
                         ),
                         Text(
                           'Show All',
@@ -392,7 +396,7 @@ class _ProfileState extends State<Profile> {
                     padding: EdgeInsets.only(left: 10),
                     child: ListView.builder(
                         shrinkWrap: true,
-                        itemCount: consumer.names.length,
+                        itemCount: data.names.length,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) => GestureDetector(
                               onTap: () {},
@@ -408,7 +412,7 @@ class _ProfileState extends State<Profile> {
                                     padding: EdgeInsets.only(top: 10),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
-                                      color: consumer2.isDark
+                                      color: log.isDark
                                           ? Color.fromARGB(255, 34, 34, 34)
                                           : Color.fromARGB(255, 244, 244, 244),
                                     ),
@@ -419,7 +423,7 @@ class _ProfileState extends State<Profile> {
                                         Column(
                                           children: [
                                             Text(
-                                              consumer.names[index],
+                                              data.names[index],
                                               style: TextStyle(
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.w600),
@@ -428,7 +432,7 @@ class _ProfileState extends State<Profile> {
                                               '3 room weekly',
                                               style: TextStyle(
                                                   fontSize: 13,
-                                                  color: consumer2.isDark
+                                                  color: log.isDark
                                                       ? Color.fromARGB(
                                                           255, 105, 105, 105)
                                                       : Color.fromARGB(
@@ -444,7 +448,7 @@ class _ProfileState extends State<Profile> {
                                             image: DecorationImage(
                                                 fit: BoxFit.cover,
                                                 image: AssetImage(
-                                                    'assets/images/${consumer.photos[index]}')),
+                                                    'assets/images/${data.photos[index]}')),
                                             borderRadius:
                                                 BorderRadius.circular(10),
                                           ),
@@ -466,7 +470,9 @@ class _ProfileState extends State<Profile> {
                       Text(
                         'Topics to Follow',
                         style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w600),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context).primaryColor),
                       ),
                       SizedBox(
                         height: 10,
@@ -475,21 +481,21 @@ class _ProfileState extends State<Profile> {
                           width: swidth,
                           child: Wrap(
                             children: List.generate(
-                                consumer.topics.length,
+                                data.topics.length,
                                 (index) => Container(
                                       margin:
                                           EdgeInsets.only(right: 13, top: 13),
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 13, vertical: 3),
                                       decoration: BoxDecoration(
-                                          color: consumer2.isDark
+                                          color: log.isDark
                                               ? Color.fromARGB(255, 34, 34, 34)
                                               : Color.fromARGB(
                                                   255, 244, 244, 244),
                                           borderRadius:
                                               BorderRadius.circular(8)),
                                       child: Text(
-                                        consumer.topics[index],
+                                        data.topics[index],
                                         style: TextStyle(
                                             fontSize: 15,
                                             fontWeight: FontWeight.w500),

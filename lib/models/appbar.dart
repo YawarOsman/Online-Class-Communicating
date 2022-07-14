@@ -45,7 +45,9 @@ class _AppBarModelState extends State<AppBarModel> {
             ),
             InkWell(
               borderRadius: BorderRadius.circular(40),
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, '/search');
+              },
               child: Padding(
                 padding: const EdgeInsets.all(6.0),
                 child: Icon(

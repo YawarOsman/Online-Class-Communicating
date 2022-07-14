@@ -15,7 +15,6 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  late ThemeData _theme;
   late MediaQueryData _mediaQueryData;
   late double _swidth;
   late double _sheight;
@@ -26,20 +25,18 @@ class _MainPageState extends State<MainPage> {
     _mediaQueryData = MediaQuery.of(context);
     _swidth = _mediaQueryData.size.width;
     _sheight = _mediaQueryData.size.height;
-    _theme = Theme.of(context);
 
     return Consumer2<Data, Log>(
-      builder: (context, consumer, consumer2, child) => Scaffold(
+      builder: (context, data, log, child) => Scaffold(
           drawer: Profile(),
           appBar: PreferredSize(
             preferredSize: Size(double.infinity, 47),
-            child: AppBarModel(
-              theme: _theme,
-            ),
+            child: AppBarModel(theme: Theme.of(context)),
           ),
           body: Column(children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 8),
+              padding: const EdgeInsets.only(
+                  left: 13, right: 13, top: 8, bottom: 12),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -108,9 +105,6 @@ class _MainPageState extends State<MainPage> {
                 ],
               ),
             ),
-            SizedBox(
-              height: 4,
-            ),
             Expanded(
               child: ListView.builder(
                 shrinkWrap: true,
@@ -139,13 +133,13 @@ class _MainPageState extends State<MainPage> {
                                   children: [
                                     CircleAvatar(
                                       backgroundImage: AssetImage(
-                                          'assets/images/${consumer.photos[index]}'),
+                                          'assets/images/${data.photos[index]}'),
                                     ),
                                     SizedBox(
                                       width: 10,
                                     ),
                                     Text(
-                                      consumer.names[index],
+                                      data.names[index],
                                       style: TextStyle(fontSize: 17),
                                     ),
                                   ],
@@ -176,14 +170,14 @@ class _MainPageState extends State<MainPage> {
                                           CircleAvatar(
                                             radius: 15,
                                             backgroundImage: AssetImage(
-                                                'assets/images/${consumer.photos[consumer.photos.length - index - 1]}'),
+                                                'assets/images/${data.photos[data.photos.length - index - 1]}'),
                                           ),
                                           Positioned(
                                             left: 17,
                                             child: CircleAvatar(
                                               radius: 15,
                                               backgroundImage: AssetImage(
-                                                  'assets/images/${consumer.photos[consumer.photos.length - index - 2]}'),
+                                                  'assets/images/${data.photos[data.photos.length - index - 2]}'),
                                             ),
                                           ),
                                           Positioned(
@@ -192,7 +186,7 @@ class _MainPageState extends State<MainPage> {
                                             child: CircleAvatar(
                                               radius: 15,
                                               backgroundImage: AssetImage(
-                                                  'assets/images/${consumer.photos[consumer.photos.length - index - 3]}'),
+                                                  'assets/images/${data.photos[data.photos.length - index - 3]}'),
                                             ),
                                           ),
                                         ],
@@ -207,7 +201,7 @@ class _MainPageState extends State<MainPage> {
                                           Icons.person_outline,
                                           size: 13,
                                         ),
-                                        Text(consumer.names.length.toString(),
+                                        Text(data.names.length.toString(),
                                             style: TextStyle(fontSize: 11))
                                       ],
                                     )
@@ -222,11 +216,11 @@ class _MainPageState extends State<MainPage> {
                                     child: ListView.builder(
                                       physics: NeverScrollableScrollPhysics(),
                                       shrinkWrap: true,
-                                      itemCount: consumer.names.length <= 3
-                                          ? consumer.names.length
+                                      itemCount: data.names.length <= 3
+                                          ? data.names.length
                                           : 3,
                                       itemBuilder: (context, _index) =>
-                                          Text(consumer.names[_index]),
+                                          Text(data.names[_index]),
                                     ),
                                   ),
                                 )

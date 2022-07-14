@@ -17,11 +17,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  late ThemeData _theme;
   late MediaQueryData _mediaQueryData;
   late double _swidth;
   late double _sheight;
   bool _roomSelected = true;
+  @override
   List _list = [
     // Center with a Text widget in 4 orders
     Scaffold(
@@ -52,11 +52,10 @@ class _HomeState extends State<Home> {
     _mediaQueryData = MediaQuery.of(context);
     _swidth = _mediaQueryData.size.width;
     _sheight = _mediaQueryData.size.height;
-    _theme = Theme.of(context);
 
     return Consumer<Log>(
         builder: ((context, consumer, child) => Scaffold(
-              bottomSheet: BottomBar(theme: _theme),
+              bottomSheet: BottomBar(theme: Theme.of(context)),
               body: _list.elementAt(consumer.selectedTab),
             )));
   }

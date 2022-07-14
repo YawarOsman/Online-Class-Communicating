@@ -15,11 +15,8 @@ class _BottomBarState extends State<BottomBar> {
   int _bottonAppBarSelectedIndex = 4;
   double _roomSize = 40;
 
-  var provider;
-
   @override
   Widget build(BuildContext context) {
-    provider = Provider.of<Log>(context, listen: false);
     return Consumer<Log>(
       builder: (context, consumer, child) => Container(
         color: widget.theme.scaffoldBackgroundColor,

@@ -14,14 +14,6 @@ class Log extends ChangeNotifier {
     return _isDark;
   }
 
-  set setLoggedIn(bool loggedIn) {
-    _isLoggedIn = loggedIn;
-  }
-
-  set setDark(bool dark) {
-    _isDark = dark;
-  }
-
   get deviceType {
     return _deviceType;
   }
@@ -30,12 +22,21 @@ class Log extends ChangeNotifier {
     return _selectedTab;
   }
 
+  set setLoggedIn(bool loggedIn) {
+    _isLoggedIn = loggedIn;
+  }
+
+  set setDark(bool dark) {
+    _isDark = dark;
+  }
+
   void setSelectedTab(int selectedTab) {
     _selectedTab = selectedTab;
     notifyListeners();
   }
 
-  setIsDark() {
-    _isDark = true;
+  void setIsDark(bool isDark) {
+    _isDark = isDark;
+    notifyListeners();
   }
 }
