@@ -9,6 +9,8 @@ import 'package:english_tech/provider/log.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'pages/messages.dart';
+
 void main() {
   runApp(MultiProvider(providers: [
     ListenableProvider(create: (context) => Data()),
@@ -51,6 +53,7 @@ class MyApp extends StatelessWidget {
         '/profile': (context) => Profile(),
         '/settings': (context) => Settings(),
         '/search': (context) => Search(),
+        '/messages': (context) => Messages(),
       },
       home: Home(),
     );

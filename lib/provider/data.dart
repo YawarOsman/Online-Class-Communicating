@@ -31,7 +31,6 @@ class Data extends ChangeNotifier {
     '1.jpeg',
     '2.jpeg',
   ];
-
   List _topics = [
     'meet people',
     'psychology',
@@ -48,6 +47,22 @@ class Data extends ChangeNotifier {
     'English',
   ];
 
+  List _messages = [
+    'ok bye',
+    'sometimes i feel like i am not good',
+    'in antoher side that is not good',
+    'lets talk about something',
+    'nevermind',
+    'don\'t worry',
+    'sorry, i gotta go',
+    'self driving cars',
+    'lights so bright when i see them',
+    'why do people like to talk about themselves',
+    'yes, it is true',
+    'all right',
+    'hello dude, how is it going?',
+  ];
+
   get names {
     return _name;
   }
@@ -58,5 +73,9 @@ class Data extends ChangeNotifier {
 
   get topics {
     return _topics;
+  }
+
+  get messages {
+    return _messages;
   }
 }

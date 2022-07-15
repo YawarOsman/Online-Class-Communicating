@@ -28,6 +28,7 @@ class _SearchState extends State<Search> {
                     leading: SizedBox(width: 0),
                     elevation: 0,
                     titleSpacing: 0,
+                    toolbarHeight: 38,
                     title: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 13),
                       child: Row(
@@ -431,7 +432,6 @@ class _SearchState extends State<Search> {
                                             child: Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
-                                              mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Text('Cardy Neon'),
                                                 Text(
